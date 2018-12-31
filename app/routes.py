@@ -14,20 +14,16 @@ def main():
 
 @app.route('/alpha')
 def alpha():
-	def alphasort(post):
-		return post.word
 
 	alphalist = Post.query.all()
-	alphalist.sort(key = alphasort)
+	alphalist.sort(key=lambda post: (post.word))
 	return render_template("alpha.html", sentence = "PeoplesDict", postlist = alphalist)
 
 @app.route('/ranked')
 def ranked():    
-	"""def ranksort(post1, post2):
-		return ((post1.upvotes < post2.upvotes) or (post1.upvotes == post2.upvotes and post1.word < post2.word ))"""
-
+	
 	ranklist = Post.query.all()
-	ranklist.sort(key=lambda post: (post.upvotes, post.word))
+	ranklist.sort(key=lambda post: (post.upvotes), reverse = True)
 	return render_template("ranked.html", sentence = "PeoplesDict", postlist = ranklist)
 
 

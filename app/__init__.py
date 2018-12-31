@@ -5,14 +5,14 @@ Created on Thu Dec 27 13:49:31 2018
 @author: famild
 """
 from flask import Flask, session
-from config import Config
+from app.config import Config
 from flask_sqlalchemy import SQLAlchemy
-#from flask_migrate import Migrate
+
 
 app = Flask(__name__)
-app.config.from_object(Config)
-db = SQLAlchemy(app)
-#migrate = Migrate(app, db)
+app.config.from_object(Config) #forms object so database can be accessed
+db = SQLAlchemy(app) #database file represented as a Python object
+
 
 from app import routes, models
 
