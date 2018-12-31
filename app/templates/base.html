@@ -1,9 +1,20 @@
-<h1>{{sentence}}</h1>
+<html>
 
-{% block content %}{% endblock %}
+	<head>
+		<title>{{sentence}}</title>
+		<link rel = "stylesheet" href = "/static/style.css">
+
+	</head>
+
+
+	<body>
+		<h1>{{sentence}}</h1>
+
+		{% block content %}{% endblock %}
+	</body>
 
 
 
-
+</html>
 
 
