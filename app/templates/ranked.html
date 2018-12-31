@@ -2,6 +2,13 @@
 
 {% block content %}
 
-<p>Here all dictionary entries will be sorted by rank</p>
+	<p>Here all dictionary entries will be sorted by rank</p>
+	{% for post in postlist %}
+		<h3>{{post.word}}</h3>
+		<p>{{post.definition}}</p>
+		<div>Upvotes:{{post.upvotes}} Downvotes:{{post.downvotes}}<div>
+		<p>--------------------------------------------------------------------------</p>
+	{% endfor %}
+
 
 {% endblock %}
