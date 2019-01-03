@@ -1,7 +1,7 @@
 
 
 h1 {
-	color: seagreen;
+	color: white;
 	font-size: 72px;
 }
 
@@ -17,5 +17,22 @@ p {
 }
 
 body {
-	background: #EBF7EE;
+	background: #FAF5FE;
+}
+
+.post-border{
+	border-width: 2px;
+	border-style: solid;
+	border-color: grey;
+	margin: 20px;
+
+}
+.post-back{
+	background-color: white;
+	padding: 10px;
+}
+
+.menu{
+	background-color: #B273E9;
+	padding: 10px;
 }

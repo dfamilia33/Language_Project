@@ -8,7 +8,12 @@
 
 
 	<body>
-		<h1>{{sentence}}</h1>
+		<div class = "menu">
+			<h1>{{sentence}}</h1>
+			<a href = "/alpha">Sorted alphabetically</a>
+			<a href = "/ranked">Sorted by popularity</a>
+		</div>
+
 
 		{% block content %}{% endblock %}
 	</body>
