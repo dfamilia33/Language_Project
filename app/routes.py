@@ -21,10 +21,17 @@ def alpha():
 
 @app.route('/ranked')
 def ranked():    
-	
+
 	ranklist = Post.query.all()
 	ranklist.sort(key=lambda post: (post.upvotes), reverse = True)
 	return render_template("ranked.html", sentence = "PeoplesDict", postlist = ranklist)
+
+@app.route('/time')
+def time():
+	timelist = Post.query.all()
+	timelist.sort(key=lambda post: (post.timestamp))
+	return render_template("newest.html", sentence = "PeoplesDict", postlist = timelist)
+
 
 
 
