@@ -6,7 +6,9 @@ A dictionary web app to store collquial/slang words in the spanish language, to 
 and sorting criteria. Meant to help those learning the language understand spoken spanish outside the classroom.
 
 ##Technologies
+
 #Languages
+
 *HTML
 *CSS
 *Python
