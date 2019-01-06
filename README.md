@@ -7,17 +7,17 @@ and sorting criteria. Meant to help those learning the language understand spoke
 
 ## Technologies
 
-# Languages
+### Languages
 * HTML
 * CSS
 * Python
 * Javascript(eventually)
 
-# Frameworks
+### Frameworks
 * Flask
 
-# Database
-*SQL Alchemy
+### Database
+* SQL Alchemy
 
 # How it works
 Each word has a class that holds information about the word so a user can browse words based on criteria(timestamp,country, popularity,
