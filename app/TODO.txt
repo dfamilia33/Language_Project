@@ -1,0 +1,9 @@
+To Do:
+
+Download Pack of Latin American Flag Icons
+Update HTML Templates to Display Flags next to Words
+Make drop down HTML element to choose countries
+Make a route that takes the country and finds word that maps to it
+
+
+Deployment

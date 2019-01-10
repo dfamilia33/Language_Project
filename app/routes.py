@@ -10,27 +10,27 @@ from app.models import Post
 
 @app.route('/')
 def main():
-	return render_template("base.html", sentence = "PeoplesDict")
+	return render_template("base.html", sentence = "JeviDict")
 
 @app.route('/alpha')
 def alpha():
 
 	alphalist = Post.query.all()
 	alphalist.sort(key=lambda post: (post.word))
-	return render_template("alpha.html", sentence = "PeoplesDict", postlist = alphalist)
+	return render_template("alpha.html", sentence = "JeviDict", postlist = alphalist)
 
 @app.route('/ranked')
 def ranked():    
 
 	ranklist = Post.query.all()
 	ranklist.sort(key=lambda post: (post.upvotes), reverse = True)
-	return render_template("ranked.html", sentence = "PeoplesDict", postlist = ranklist)
+	return render_template("ranked.html", sentence = "JeviDict", postlist = ranklist)
 
 @app.route('/time')
 def time():
 	timelist = Post.query.all()
 	timelist.sort(key=lambda post: (post.timestamp))
-	return render_template("newest.html", sentence = "PeoplesDict", postlist = timelist)
+	return render_template("newest.html", sentence = "JeviDict", postlist = timelist)
 
 
 
