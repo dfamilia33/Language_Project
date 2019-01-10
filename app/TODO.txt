@@ -1,9 +1,13 @@
 To Do:
 
-Download Pack of Latin American Flag Icons
 Update HTML Templates to Display Flags next to Words
+Scale code so whole database isnt being sorted just 25 at a time
 Make drop down HTML element to choose countries
 Make a route that takes the country and finds word that maps to it
-
-
-Deployment
+Add upvote downvote system
+Add user submission form
+CSS Styling
+Deployment Database (MySQL, ProtegeSQL)
+Site Security
+Register Domain
+Deploy!!! Goal (02/24/19)

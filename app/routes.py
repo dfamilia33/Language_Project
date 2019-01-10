@@ -16,21 +16,39 @@ def main():
 def alpha():
 
 	alphalist = Post.query.all()
+	flags = list()
+
+	for post in alphalist:
+		flags.append(post.countries.split())
+
 	alphalist.sort(key=lambda post: (post.word))
-	return render_template("alpha.html", sentence = "JeviDict", postlist = alphalist)
+
+
+
+	return render_template("alpha.html", sentence = "JeviDict", postlist = alphalist, flaglist = flags)
 
 @app.route('/ranked')
 def ranked():    
 
 	ranklist = Post.query.all()
+	flags = list()
+
+	for post in ranklist:
+		flags.append(post.countries.split())
+
 	ranklist.sort(key=lambda post: (post.upvotes), reverse = True)
-	return render_template("ranked.html", sentence = "JeviDict", postlist = ranklist)
+	return render_template("ranked.html", sentence = "JeviDict", postlist = ranklist, flaglist = flags)
 
 @app.route('/time')
 def time():
 	timelist = Post.query.all()
+	flags = list()
+
+	for post in timelist:
+		flags.append(post.countries.split())
+
 	timelist.sort(key=lambda post: (post.timestamp))
-	return render_template("newest.html", sentence = "JeviDict", postlist = timelist)
+	return render_template("newest.html", sentence = "JeviDict", postlist = timelist, flaglist = flags)
 
 
 
