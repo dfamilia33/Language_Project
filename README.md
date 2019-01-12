@@ -19,7 +19,11 @@ and sorting criteria. Meant to help those learning the language understand spoke
 ### Database
 * SQL Alchemy
 
-# How it works
+## How it works
 Each word has a class that holds information about the word so a user can browse words based on criteria(timestamp,country, popularity,
 etc..). That class inherits from a databse model so it can easily store itself in a database file. As of now testing is being done
 through a linux ubuntu command line until deployment
+
+## Credits
+
+SVG flags made by [koppi](https://github.com/koppi) along with CSS integration credited to [lipis](https://github.com/lipis).
