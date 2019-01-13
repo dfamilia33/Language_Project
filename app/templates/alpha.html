@@ -16,5 +16,10 @@
 			<div>Upvotes:{{post.upvotes}} Downvotes:{{post.downvotes}}</div>
 		</div>
 	{% endfor %}
+	{% for i in indlist %}
+		<a href = "/alpha/{{i}}"> {{i}} </a>
+	{% endfor %}
+		
+
 
 {% endblock %}

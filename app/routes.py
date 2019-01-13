@@ -7,7 +7,7 @@ Created on Fri Dec 28 14:27:24 2018
 from app import app, db
 from flask import render_template, request
 from app.models import Post
-from app.listhelper import slice_list
+from app.listhelper import slice_list, page_ind
 
 
 
@@ -32,7 +32,10 @@ def alpha(num):
 	alphalist.sort(key=lambda post: (post.word))
 
 
-	return render_template("alpha.html", sentence = "JeviDict", postlist = slice_list(alphalist, num), flaglist = flags)
+	return render_template("alpha.html", sentence = "JeviDict", 
+		postlist = slice_list(alphalist, num),
+	 flaglist = flags, indlist = page_ind(num, len(alphalist)))
+
 
 @app.route('/ranked/<int:num>')
 def ranked(num):    
@@ -49,7 +52,10 @@ def ranked(num):
 		flags.append(post.countries.split())
 
 	ranklist.sort(key=lambda post: (post.upvotes), reverse = True)
-	return render_template("ranked.html", sentence = "JeviDict", postlist = slice_list(ranklist, num), flaglist = flags)
+
+	return render_template("ranked.html", sentence = "JeviDict",
+	 postlist = slice_list(ranklist, num), flaglist = flags)
+
 
 @app.route('/time/<int:num>')
 def time(num):
@@ -64,7 +70,8 @@ def time(num):
 		flags.append(post.countries.split())
 
 	timelist.sort(key=lambda post: (post.timestamp))
-	return render_template("newest.html", sentence = "JeviDict", postlist = slice_list(timelist, num), flaglist = flags)
+	return render_template("newest.html", sentence = "JeviDict",
+	 postlist = slice_list(timelist, num), flaglist = flags)
 
 
 
