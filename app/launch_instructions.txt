@@ -1,0 +1,7 @@
+test env instructions:
+
+
+Linux:
+source venv/Scripts/activate
+export FLASK_APP=app/language.py
+flask run

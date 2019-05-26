@@ -9,6 +9,7 @@ Add upvote downvote system
 Add user submission form
 - Add user verfication for language experts: professors, teachers, etc..
 CSS Styling
+Cross Platoform Integration
 Deployment Database (MySQL, ProtegeSQL) - This step is trivial - continue developing in sqlite
 Site Security
 Register Domain

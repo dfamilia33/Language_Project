@@ -15,5 +15,8 @@
 			<div>{{post.timestamp}}</div>
 		</div>
 	{% endfor %}
+	{% for i in indlist %}
+		<a href = "/time/{{i}}"> {{i}} </a>
+	{% endfor %}	
 
 {% endblock %}
