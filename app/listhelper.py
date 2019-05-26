@@ -4,7 +4,7 @@ import math
 
 def page_ind( num, dblen):
 	mylist = list()
-	last_ind = math.ceil(dblen/25)
+	last_ind = int(math.ceil(dblen/25.0)) #int divided by float to cast to float then back to an int
 
 	if(dblen <=75):
 		for i in range(last_ind):
