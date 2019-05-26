@@ -7,8 +7,24 @@ Make a route that takes the country and finds word that maps to it
 Make a Country model that contains a list of Post IDs
 Add upvote downvote system
 Add user submission form
+- Add user verfication for language experts: professors, teachers, etc..
 CSS Styling
-Deployment Database (MySQL, ProtegeSQL)
+Deployment Database (MySQL, ProtegeSQL) - This step is trivial - continue developing in sqlite
 Site Security
 Register Domain
 Deploy!!! Goal (02/24/19)
+
+
+With database -
+It would most likely be more efficient to have n number of databases already sorted
+and just insert and delete into them accordingly. Otherwise my program might have 
+big issues with complexity sorting huge python lists of database model instances
+
+For each ranking and country?
+What about words from an entire region?
+Those will have to be parents of ind countries
+
+Support search of words coming from multiple countries
+
+Front end-
+I will probably have to scale the boxes for mobile and all
