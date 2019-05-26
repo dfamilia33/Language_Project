@@ -13,7 +13,7 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     word = db.Column(db.String(64))#, index=True, unique=True)
     definition = db.Column(db.String(256))
-    countries = db.Column(db.String(100))
+    #countries = db.Column(db.String(100))
     upvotes = db.Column(db.Integer)
     downvotes = db.Column(db.Integer)
     timestamp = db.Column(db.String(120))
