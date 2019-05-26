@@ -52,8 +52,6 @@ def alpha(num):
 
 	flags = list()
 
-	for post in alphalist:
-		flags.append(post.countries.split())
 
 	return render_template("alpha.html", sentence = "JeviDict", postlist = alphalist,
 	 flaglist = flags, indlist = page_ind(num, len(alphalist)))
@@ -94,8 +92,7 @@ def ranked(num):
 
 	flags = list()
 
-	for post in ranklist:
-		flags.append(post.countries.split())
+
 
 	
 
@@ -137,8 +134,6 @@ def time(num):
 	
 	flags = list()
 
-	for post in timelist:
-		flags.append(post.countries.split())
 
 	return render_template("newest.html", sentence = "JeviDict",
 	 postlist = timelist, flaglist = flags, indlist = page_ind(num, len(timelist)))
