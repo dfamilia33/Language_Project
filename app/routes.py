@@ -6,7 +6,7 @@ Created on Fri Dec 28 14:27:24 2018
 """
 from app import app, db
 from flask import render_template, request
-from app.models import Post
+from app.models import Post, Country
 from app.listhelper import page_ind
 
 
@@ -137,6 +137,23 @@ def time(num):
 
 	return render_template("newest.html", sentence = "JeviDict",
 	 postlist = timelist, flaglist = flags, indlist = page_ind(num, len(timelist)))
+
+@app.route('/by_Country/<abrev_in>/<int:num>')
+def country(abrev_in,num):
+	cnt_list = Country.query.filter_by(abrev = abrev_in)
+
+	postlist = list()
+
+	for i in cnt_list:
+		postlist.append(Post.query.get(i.user_id))
+
+	name_of_country = cnt_list[0].name
+	flags = list()
+
+	return render_template("country.html", name_of_country = name_of_country,
+	 postlist = postlist, flaglist = flags, indlist = page_ind(num, len(postlist)))
+
+
 
 
 

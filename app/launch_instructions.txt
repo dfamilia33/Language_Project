@@ -5,3 +5,8 @@ Linux:
 source venv/Scripts/activate
 export FLASK_APP=app/language.py
 flask run
+
+
+flask db current
+flask db heads
+flask db stamp heads

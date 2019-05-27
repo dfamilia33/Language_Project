@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+	<p>Words from {{name_of_country}}</p>
+
+	{% for post in postlist %}
+		<div class = "post-border post-back">
+			<h3>{{post.word}}</h3>
+			
+			{% for ctry in flaglist[post.id - 1] %}
+				<span class="flag-icon flag-icon-{{ctry.lower()}}"></span>
+			{% endfor %}
+			
+			<p>{{post.definition}}</p>
+			<div>Upvotes:{{post.upvotes}} Downvotes:{{post.downvotes}}</div>
+		</div>
+	{% endfor %}
+	{% for i in indlist %}
+		<a href = "/alpha/{{i}}"> {{i}} </a>
+	{% endfor %}
+		
+
+
+{% endblock %}
