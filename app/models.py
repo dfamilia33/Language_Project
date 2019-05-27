@@ -17,6 +17,13 @@ class Post(db.Model):
     upvotes = db.Column(db.Integer)
     downvotes = db.Column(db.Integer)
     timestamp = db.Column(db.String(120))
+    countries = db.relationship('Country', backref='Post', lazy=True)
 
     def __repr__(self):
         return '<User {}>'.format(self.word)  
+
+class Country(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(32))
+    abrev = db.Column(db.String(4))
+    user_id = db.Column(db.Integer, db.ForeignKey('post.id')) #HAS TO BE LOWERCASE
