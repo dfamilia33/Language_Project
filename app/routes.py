@@ -150,7 +150,7 @@ def country(abrev_in,num):
 	name_of_country = cnt_list[0].name
 	flags = list()
 
-	return render_template("country.html", name_of_country = name_of_country,
+	return render_template("country.html", name_of_country = name_of_country, abrev = abrev_in,
 	 postlist = postlist, flaglist = flags, indlist = page_ind(num, len(postlist)))
 
 
