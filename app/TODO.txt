@@ -29,3 +29,11 @@ Support search of words coming from multiple countries
 
 Front end-
 I will probably have to scale the boxes for mobile and all
+
+
+TODO- 05/27
+ADD Bar on the bottom to switch pages
+Search Bar
+Side Bar
+Submission page
+Bootstrap grid layout
