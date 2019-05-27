@@ -1,28 +1,36 @@
-<html>
-
-	<head>
-		<title>{{sentence}}</title>
-		<link rel = "stylesheet" href = "{{ url_for('static', filename='style.css') }}">
-		<link rel = "stylesheet" href = "{{ url_for('static', filename='flag-icon.css') }}">
-
-
-	</head>
-
-
-	<body>
-		<div class = "menu">
-			<h1>{{sentence}}</h1>
-			<a href = "/alpha/1">Sorted alphabetically</a>
-			<a href = "/ranked/1">Sorted by popularity</a>
-			<a href = "/time/1">Sorted by time</a>
-		</div>
-
-
-		{% block content %}{% endblock %}
-	</body>
+{% extends "bootstrap/base.html" %}
 
 
 
-</html>
+	
+	
+{% block title %}{{sentence}}{% endblock %}
+
+{% block styles -%}
+	{{super()}}  {# do not forget to call super or Bootstrap's own stylesheets
+	                    will disappear! #}
+	<link rel = "stylesheet" href = "{{ url_for('static', filename='style.css') }}">
+	<link rel = "stylesheet" href = "{{ url_for('static', filename='flag-icon.css') }}">
+
+{% endblock %}		
+
+
+
+{% block navbar %}
+	<div class = "menu">
+		<h1>{{sentence}}</h1>
+		<a href = "/alpha/1">Sorted alphabetically</a>
+		<a href = "/ranked/1">Sorted by popularity</a>
+		<a href = "/time/1">Sorted by time</a>
+	</div>
+
+{% endblock %}
+		
+
+
+{% block content %}{% endblock %}
+
+
+
 
 
