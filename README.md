@@ -19,8 +19,8 @@ and sorting criteria. Meant to help those learning the language understand spoke
 * SQLAlchemy
 
 ### Database
-* SqlLite
-* Development Database: TBA
+* Sqlite
+* Production Database: TBA
 
 ## How it works
 Each word has a class that holds information about the word so a user can browse words based on criteria(timestamp,country, popularity,
