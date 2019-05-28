@@ -6,11 +6,14 @@
 	
 {% block title %}{{sentence}}{% endblock %}
 
+
+
 {% block styles -%}
 	{{super()}}  {# do not forget to call super or Bootstrap's own stylesheets
 	                    will disappear! #}
 	<link rel = "stylesheet" href = "{{ url_for('static', filename='style.css') }}">
 	<link rel = "stylesheet" href = "{{ url_for('static', filename='flag-icon.css') }}">
+
 
 {% endblock %}		
 
@@ -43,6 +46,12 @@
 
 {% block content %}{% endblock %}
 
+{% block scripts %}
+{{super()}}
+<script src="{{url_for('static', filename='pagination.js')}}"></script>
+
+
+{% endblock %}
 
 
 
