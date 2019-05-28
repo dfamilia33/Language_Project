@@ -30,9 +30,9 @@ through a linux ubuntu command line until deployment
 ## Launch
 To Launch from a linux command line:
 
-source venv/Scripts/activate
-export FLASK_APP=app/language.py
-flask run
+* source venv/Scripts/activate
+* export FLASK_APP=app/language.py
+* flask run
 
 
 ## Credits
