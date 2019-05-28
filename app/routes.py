@@ -8,6 +8,7 @@ from app import app, db
 from flask import render_template, request
 from app.models import Post, Country
 from app.listhelper import page_ind
+import math
 
 
 
@@ -97,7 +98,7 @@ def ranked(num):
 	
 
 	return render_template("ranked.html", sentence = "JeviDict",
-	 postlist = ranklist, flaglist = flags, indlist = page_ind(num, len(ranklist)))
+	 postlist = ranklist, flaglist = flags, indlist = page_ind(num, len(ranklist))) #not going to work past 1 since ranklst is only 25 long
 
 
 @app.route('/time/<int:num>')
@@ -150,8 +151,12 @@ def country(abrev_in,num):
 	name_of_country = cnt_list[0].name
 	flags = list()
 
-	return render_template("country.html", name_of_country = name_of_country, abrev = abrev_in,
+	return render_template("country.html", name_of_country = name_of_country,
+	 abrev = abrev_in, page = num, page_len = int(math.ceil(len(postlist)/25.0)), sentence = "JeviDict",
 	 postlist = postlist, flaglist = flags, indlist = page_ind(num, len(postlist)))
+
+	#need to SELECT COUNT(*) FROM POST for page_in and page_len to work
+	#ing pagelen len(postlist) needs to be replaced with a query that does SELECT COUNT(*) FROM POST
 
 
 
