@@ -11,18 +11,29 @@ and sorting criteria. Meant to help those learning the language understand spoke
 * HTML
 * CSS
 * Python
-* Javascript(eventually)
+* Javascript
 
-### Frameworks
+### Frameworks/Technologies
 * Flask
+* Bootstrap
+* SQLAlchemy
 
 ### Database
-* SQL Alchemy
+* SqlLite
+* Development Database: TBA
 
 ## How it works
 Each word has a class that holds information about the word so a user can browse words based on criteria(timestamp,country, popularity,
 etc..). That class inherits from a databse model so it can easily store itself in a database file. As of now testing is being done
 through a linux ubuntu command line until deployment
+
+## Launch
+To Launch from a linux command line:
+
+source venv/Scripts/activate
+export FLASK_APP=app/language.py
+flask run
+
 
 ## Credits
 
