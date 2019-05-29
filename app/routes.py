@@ -142,7 +142,10 @@ def time(num):
 @app.route('/by_Country/<abrev_in>/<int:num>')
 def country(abrev_in,num):
 	cnt_list = Country.query.filter_by(abrev = abrev_in)
-
+	cnt_count = Country.query.filter_by(abrev = abrev_in).count()	
+	
+	page_len = int(math.ceil(cnt_count/25.0))
+	
 	postlist = list()
 
 	for i in cnt_list:
@@ -152,8 +155,8 @@ def country(abrev_in,num):
 	flags = list()
 
 	return render_template("country.html", name_of_country = name_of_country,
-	 abrev = abrev_in, page = num, page_len = int(math.ceil(len(postlist)/25.0)), sentence = "JeviDict",
-	 postlist = postlist, flaglist = flags, indlist = page_ind(num, len(postlist)))
+	 abrev = abrev_in, page = num, page_len = page_len, sentence = "JeviDict",
+	 postlist = postlist, flaglist = flags, indlist = page_ind(num, cnt_count))
 
 	#need to SELECT COUNT(*) FROM POST for page_in and page_len to work
 	#ing pagelen len(postlist) needs to be replaced with a query that does SELECT COUNT(*) FROM POST
