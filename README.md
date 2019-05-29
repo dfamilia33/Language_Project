@@ -34,13 +34,13 @@ prompt then enter the linux commands below:
 
 To Launch from a linux command line:
 
-* Remove the existing virtual envrironment: 		rm -r venv
-* If you do not have virtualenv install by:		 	pip install virtualenv
-* Create a virtual environment: 					virtualenv env
-* Activate Virtual envrironment:					source venv/bin/activate
-* Dowload required packages into the env:			pip install -r requirements.txt
-* Set the flask app variable:						export FLASK_APP=app/language.py
-* Launch the app and enter link into browser!		flask run
+* Remove the existing virtual envrironment: 		+rm -r venv
+* If you do not have virtualenv install by:		 	+pip install virtualenv
+* Create a virtual environment:                 +virtualenv env
+* Activate Virtual envrironment:					      +source venv/bin/activate
+* Dowload required packages into the env:			  +pip install -r requirements.txt
+* Set the flask app variable:						        +export FLASK_APP=app/language.py
+* Launch the app and enter link into browser!		+flask run
 
 
 ## Credits
