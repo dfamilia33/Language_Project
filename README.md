@@ -28,11 +28,19 @@ etc..). That class inherits from a databse model so it can easily store itself i
 through a linux ubuntu command line until deployment
 
 ## Launch
+The app in development can be launched through a command line. This process should take
+no longer than a few minutes. Start by navigting to the folder in your command line
+prompt then enter the linux commands below:
+
 To Launch from a linux command line:
 
-* source venv/bin/activate
-* export FLASK_APP=app/language.py
-* flask run
+* Remove the existing virtual envrironment: 		rm -r venv
+* If you do not have virtualenv install by:		 	pip install virtualenv
+* Create a virtual environment: 					virtualenv env
+* Activate Virtual envrironment:					source venv/bin/activate
+* Dowload required packages into the env:			pip install -r requirements.txt
+* Set the flask app variable:						export FLASK_APP=app/language.py
+* Launch the app and enter link into browser!		flask run
 
 
 ## Credits
