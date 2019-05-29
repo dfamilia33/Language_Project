@@ -11,12 +11,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 			if (curr == 1) {
 				
-				document.querySelector("#page_prev").hidden = true;
+				document.querySelector("#page_prev").removeAttribute("href");
 			}
 
 			if (curr == plen) {
 				
-				document.querySelector("#page_next").hidden = true;
+				document.querySelector("#page_next").removeAttribute("href");
 			}
 		}
 		catch(err){
