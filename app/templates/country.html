@@ -2,7 +2,7 @@
 
 {% block content %}
 
-	<p>Words from {{name_of_country}}</p>
+	<p data-cntry = "true" data-abrev = '{{abrev.lower()}}' data-full_cntry ='{{name_of_country}}' >Words from {{name_of_country}}</p>
 
 	{% for post in postlist %}
 		<div class = "post-border post-back">
