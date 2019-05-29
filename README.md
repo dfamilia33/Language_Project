@@ -33,6 +33,7 @@ no longer than a few minutes. Start by navigting to the folder in your command l
 prompt then enter the linux commands below:
 
 To Launch from a linux command line:
+
 Step | Command
 ------------ | -------------
 Remove the existing virtual envrironment | rm -r venv
