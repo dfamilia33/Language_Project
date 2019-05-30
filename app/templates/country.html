@@ -15,7 +15,8 @@
 			<p>{{post.definition}}</p>
 			
 				<div>
-					<span class="glyphicon glyphicon-chevron-up" id = "up_{{post.id}}" data-postid = {{post.id}} data-state = "down" onclick="upvote(this)"> </span><span> {{post.upvotes}}</span>
+					<span class="glyphicon glyphicon-chevron-up" id = "up_{{post.id}}" data-postid = {{post.id}} data-state = "down" 
+					onload="upload(this)" onclick="upvote(this)"> </span><span> {{post.upvotes}}</span>
 				</div>
 			
 				<div>
