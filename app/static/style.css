@@ -36,3 +36,8 @@ body {
 	background-color: #B273E9;
 	padding: 10px;
 }
+
+.glyphicon:hover {
+  opacity: 0.75;
+  cursor: pointer;
+}

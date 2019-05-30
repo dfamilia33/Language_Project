@@ -5,7 +5,7 @@
 	<p data-cntry = "true" data-abrev = '{{abrev.lower()}}' data-full_cntry ='{{name_of_country}}' >Words from {{name_of_country}}</p>
 
 	{% for post in postlist %}
-		<div class = "post-border post-back">
+		<div class = "post-border post-back" data-post_id = {{post.id}}>
 			<h3>{{post.word}}</h3>
 			
 			{% for ctry in flaglist[post.id - 1] %}
@@ -13,7 +13,16 @@
 			{% endfor %}
 			
 			<p>{{post.definition}}</p>
-			<div>Upvotes:{{post.upvotes}} Downvotes:{{post.downvotes}}</div>
+			
+				<div>
+					<span class="glyphicon glyphicon-chevron-up" id = "up_{{post.id}}" data-state = "down" onclick="upvote(this)"> </span><span> {{post.upvotes}}</span>
+				</div>
+			
+				<div>
+					<span class="glyphicon glyphicon-chevron-down" id = "down_{{post.id}}" data-state = "down" onclick="downvote(this)"></span><span> {{post.downvotes}}</span>
+				</div>
+			
+
 		</div>
 	{% endfor %}
 
