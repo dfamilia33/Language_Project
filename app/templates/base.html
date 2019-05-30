@@ -22,23 +22,33 @@
 {% block navbar %}
 	<div class = "menu">
 		<h1>{{sentence}}</h1>
-		<a href="/alpha/1" class="btn btn-primary btn-md active" role="button" aria-pressed="true">Sorted alphabetically</a>
-		<a href="/ranked/1" class="btn btn-primary btn-md active" role="button" aria-pressed="true">Sorted by popularity</a>
-		<a href="/time/1" class="btn btn-primary btn-md active" role="button" aria-pressed="true">Sorted by time</a>
+		
+		<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+
+			<a href="/alpha/1" class="btn btn-primary btn-md active" role="button" aria-pressed="true">Sorted alphabetically</a>
+			<a href="/ranked/1" class="btn btn-primary btn-md active" role="button" aria-pressed="true">Sorted by popularity</a>
+			<a href="/time/1" class="btn btn-primary btn-md active" role="button" aria-pressed="true">Sorted by time</a>
 
 		
-		<div class="dropdown">
-		  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		    Countries
-		  </button>
-		  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-		    <li><a class="dropdown-item" href="/by_Country/DO/1"><span class="flag-icon flag-icon-do"></span> Dominican Republic</a></li>
-		    <li><a class="dropdown-item" href="/by_Country/EC/1"><span class="flag-icon flag-icon-ec"></span> Ecuador</a></li>
-		    <li><a class="dropdown-item" href="/by_Country/ES/1"><span class="flag-icon flag-icon-es"></span> Spain</a></li>
-		    <li><a class="dropdown-item" href="/by_Country/GT/1"><span class="flag-icon flag-icon-gt"></span> Guatemala</a></li>
-		  </ul>
+			<div class="btn-group" role="group">
+				<div class="dropdown">
+				  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				    Countries
+				  </button>
+				  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+				    <li><a class="dropdown-item" href="/by_Country/DO/1"><span class="flag-icon flag-icon-do"></span> Dominican Republic</a></li>
+				    <li><a class="dropdown-item" href="/by_Country/EC/1"><span class="flag-icon flag-icon-ec"></span> Ecuador</a></li>
+				    <li><a class="dropdown-item" href="/by_Country/ES/1"><span class="flag-icon flag-icon-es"></span> Spain</a></li>
+				    <li><a class="dropdown-item" href="/by_Country/GT/1"><span class="flag-icon flag-icon-gt"></span> Guatemala</a></li>
+				  </ul>
+				</div>
+			</div>
+		
 		</div>
+
 	</div>
+
+	
 
 {% endblock %}
 		
