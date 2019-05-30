@@ -1,6 +1,6 @@
 function upvote(upbutton){
 
-	var id = document.querySelector(".post-border.post-back").dataset.post_id;
+	var id = upbutton.dataset.postid;
 
 	if (upbutton.dataset.state == "down"){
 		upbutton.style.color = "#337ab7";
@@ -24,7 +24,7 @@ function upvote(upbutton){
 
 function downvote(downbutton){
 
-	var id = document.querySelector(".post-border.post-back").dataset.post_id;
+	var id = downbutton.dataset.postid;
 
 	if (downbutton.dataset.state == "down"){
 		downbutton.style.color = "#337ab7";

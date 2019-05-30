@@ -15,11 +15,11 @@
 			<p>{{post.definition}}</p>
 			
 				<div>
-					<span class="glyphicon glyphicon-chevron-up" id = "up_{{post.id}}" data-state = "down" onclick="upvote(this)"> </span><span> {{post.upvotes}}</span>
+					<span class="glyphicon glyphicon-chevron-up" id = "up_{{post.id}}" data-postid = {{post.id}} data-state = "down" onclick="upvote(this)"> </span><span> {{post.upvotes}}</span>
 				</div>
 			
 				<div>
-					<span class="glyphicon glyphicon-chevron-down" id = "down_{{post.id}}" data-state = "down" onclick="downvote(this)"></span><span> {{post.downvotes}}</span>
+					<span class="glyphicon glyphicon-chevron-down" id = "down_{{post.id}}" data-postid = {{post.id}} data-state = "down" onclick="downvote(this)"></span><span> {{post.downvotes}}</span>
 				</div>
 			
 
