@@ -11,6 +11,7 @@ function upvote(upbutton){
 
 		upbutton.style.color = "#337ab7";
 		upbutton.dataset.state = "up";
+		localStorage.setItem(`up_${id}`, "up");
 
 		var downbutton = document.querySelector(`#down_${id}`);
 
@@ -18,6 +19,7 @@ function upvote(upbutton){
 
 			downbutton.style.color = "#333";
 			downbutton.dataset.state = "down";
+			localStorage.setItem(`down_${id}`, "down");
 		}
 
 
@@ -26,6 +28,7 @@ function upvote(upbutton){
 		op = '-'
 		upbutton.style.color = "#333";
 		upbutton.dataset.state = "down";
+		localStorage.setItem(`up_${id}`, "down");
 	}
     request.onload = () => {
 
@@ -58,18 +61,21 @@ function downvote(downbutton){
 	if (downbutton.dataset.state == "down"){
 		downbutton.style.color = "#337ab7";
 		downbutton.dataset.state = "up";
+		localStorage.setItem(`down_${id}`, "up");
 
 		var upbutton = document.querySelector(`#up_${id}`);
 
 		if(upbutton.dataset.state == "up"){
 
 			upbutton.style.color = "#333";
-			upbutton.dataset.state = "up";
+			upbutton.dataset.state = "down";
+			localStorage.setItem(`up_${id}`, "down");
 		}
 	}
 	else{
 		downbutton.style.color = "#333";
 		downbutton.dataset.state = "down";
+		localStorage.setItem(`down_${id}`, "down");
 	}
 
 
