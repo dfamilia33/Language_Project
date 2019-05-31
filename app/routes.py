@@ -161,7 +161,24 @@ def country(abrev_in,num):
 	#need to SELECT COUNT(*) FROM POST for page_in and page_len to work
 	#ing pagelen len(postlist) needs to be replaced with a query that does SELECT COUNT(*) FROM POST
 
+@app.route('/voting', methods = ["POST"])
+def vote():
 
+	op = request.form.get('operation')
+	idnum = request.form.get('id')
+	val = 0
+
+	if op == '+':
+		Post.query.get(idnum).upvotes += 1
+	
+	if op == '-':
+		Post.query.get(idnum).upvotes -= 1
+
+
+	db.session.commit()
+	val = Post.query.get(idnum).upvotes
+
+	return jsonify({"success": True, "value":val})
 
 
 
