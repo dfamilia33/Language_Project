@@ -2,7 +2,13 @@ function upvote(upbutton){
 
 	var id = upbutton.dataset.postid;
 
+	const request = new XMLHttpRequest();
+    var op;
+    request.open('POST', '/voting');
+
 	if (upbutton.dataset.state == "down"){
+		op ='+'
+
 		upbutton.style.color = "#337ab7";
 		upbutton.dataset.state = "up";
 
@@ -14,11 +20,34 @@ function upvote(upbutton){
 			downbutton.dataset.state = "down";
 		}
 
+
 	}
 	else{
+		op = '-'
 		upbutton.style.color = "#333";
 		upbutton.dataset.state = "down";
 	}
+    request.onload = () => {
+
+        // Extract JSON data from request
+        const data = JSON.parse(request.responseText);
+
+        // Update the result div
+        if (data.success) {
+            const contents = `1 USD is equal to ${data.rate} ${currency}.`
+            document.querySelector(`#uptext_${}`).innerHTML = contents;
+        }
+    }
+
+ 
+
+	// Add data to send with request
+    const data = new FormData();
+    data.append('operation', op);
+
+    // Send request
+    request.send(data);
+    return false;
 	
 }
 

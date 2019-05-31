@@ -5,7 +5,7 @@ Created on Fri Dec 28 14:27:24 2018
 @author: famild
 """
 from app import app, db
-from flask import render_template, request
+from flask import render_template, request, jsonify
 from app.models import Post, Country
 from app.listhelper import page_ind
 import math
@@ -162,7 +162,18 @@ def country(abrev_in,num):
 	#ing pagelen len(postlist) needs to be replaced with a query that does SELECT COUNT(*) FROM POST
 
 
+@app.route('/voting', methods = ["POST"])
+def vote():
 
+	op = request.form.get('operation')
+	idnum = request.form.get('id')
+	val = 0
 
+	if op == '+':
+		val = Post.query.get(idnum).upvotes += 1
+	if op == '-':
+		val = Post.query.get(idnum).upvotes -= 1
 
+	db.session.commit()
 
+	return jsonify({"success": True, "value":val})
