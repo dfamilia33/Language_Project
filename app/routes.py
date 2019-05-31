@@ -167,10 +167,13 @@ def vote():
 
 	op = request.form.get('operation')
 	idnum = request.form.get('id')
+	state = request.form.get('downstate')
 	val = 0
 
 	if op == '+':
 		Post.query.get(idnum).upvotes += 1
+		if state == "up":
+			Post.query.get(idnum).downvotes -= 1
 	
 	if op == '-':
 		Post.query.get(idnum).upvotes -= 1
