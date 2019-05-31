@@ -30,6 +30,7 @@ function upvote(upbutton){
 		upbutton.dataset.state = "down";
 		localStorage.setItem(`up_${id}`, "down");
 	}
+    
     request.onload = () => {
 
         // Extract JSON data from request
@@ -37,20 +38,19 @@ function upvote(upbutton){
 
         // Update the result div
         if (data.success) {
-            const contents = `1 USD is equal to ${data.rate} ${currency}.`
-            document.querySelector(`#uptext_${}`).innerHTML = contents;
+    		alert(data.value);
+            document.querySelector(`#uptext_${id}`).innerHTML = `${data.value}`;
         }
     }
-
  
 
 	// Add data to send with request
     const data = new FormData();
     data.append('operation', op);
+    data.append('id', parseInt(id));
 
     // Send request
     request.send(data);
-    return false;
 	
 }
 

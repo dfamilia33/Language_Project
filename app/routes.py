@@ -170,10 +170,13 @@ def vote():
 	val = 0
 
 	if op == '+':
-		val = Post.query.get(idnum).upvotes += 1
+		Post.query.get(idnum).upvotes += 1
+	
 	if op == '-':
-		val = Post.query.get(idnum).upvotes -= 1
+		Post.query.get(idnum).upvotes -= 1
+
 
 	db.session.commit()
+	val = Post.query.get(idnum).upvotes
 
 	return jsonify({"success": True, "value":val})
