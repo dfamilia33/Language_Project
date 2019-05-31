@@ -5,7 +5,7 @@ Created on Fri Dec 28 14:27:24 2018
 @author: famild
 """
 from app import app, db
-from flask import render_template, request
+from flask import render_template, request, jsonify
 from app.models import Post, Country
 from app.listhelper import page_ind
 import math
@@ -166,10 +166,13 @@ def vote():
 
 	op = request.form.get('operation')
 	idnum = request.form.get('id')
+	state = request.form.get('downstate')
 	val = 0
 
 	if op == '+':
 		Post.query.get(idnum).upvotes += 1
+		if state == "up":
+			Post.query.get(idnum).downvotes -= 1
 	
 	if op == '-':
 		Post.query.get(idnum).upvotes -= 1
@@ -179,7 +182,3 @@ def vote():
 	val = Post.query.get(idnum).upvotes
 
 	return jsonify({"success": True, "value":val})
-
-
-
-
