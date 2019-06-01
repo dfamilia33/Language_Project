@@ -167,18 +167,29 @@ def vote():
 	op = request.form.get('operation')
 	idnum = request.form.get('id')
 	state = request.form.get('downstate')
-	val = 0
+	typ = request.form.get('type')
+	val1 = 0
 
-	if op == '+':
-		Post.query.get(idnum).upvotes += 1
-		if state == "up":
+	if typ == 'upvote':
+		if op == '+':
+			Post.query.get(idnum).upvotes += 1
+			if state == "up":
+				Post.query.get(idnum).downvotes -= 1
+
+		if op == '-':
+			Post.query.get(idnum).upvotes -= 1
+
+	if typ == 'downvote':
+		if op == '+':
+			Post.query.get(idnum).downvotes += 1
+			if state == "up":
+				Post.query.get(idnum).upvotes -= 1
+
+		if op == '-':
 			Post.query.get(idnum).downvotes -= 1
-	
-	if op == '-':
-		Post.query.get(idnum).upvotes -= 1
 
 
 	db.session.commit()
-	val = Post.query.get(idnum).upvotes
-
-	return jsonify({"success": True, "value":val})
+	val1 = Post.query.get(idnum).upvotes
+	val2 = Post.query.get(idnum).downvotes
+	return jsonify({"success": True, "upvalue":val1, "downvalue" : val2})

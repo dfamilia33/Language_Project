@@ -6,6 +6,7 @@ function upvote(upbutton){
     var op;
  	var downstate;
     request.open('POST', '/voting');
+    var dec_up = false;
 
 	if (upbutton.dataset.state == "down"){
 		op ='+'
@@ -18,7 +19,7 @@ function upvote(upbutton){
 		downstate = downbutton.dataset.state;
 
 		if(downbutton.dataset.state == "up"){
-
+			dec_up = true;
 			downbutton.style.color = "#333";
 			downbutton.dataset.state = "down";
 			localStorage.setItem(`down_${id}`, "down");
@@ -41,7 +42,13 @@ function upvote(upbutton){
         // Update the result div
         if (data.success) {
     		//alert(data.value);
-            document.querySelector(`#uptext_${id}`).innerHTML = `${data.value}`;
+            document.querySelector(`#uptext_${id}`).innerHTML = `${data.upvalue}`;
+
+            if (dec_up) {
+            	document.querySelector(`#downtext_${id}`).innerHTML = `${data.downvalue}`;
+            }
+
+
         }
     }
  
@@ -50,6 +57,7 @@ function upvote(upbutton){
     const data = new FormData();
     data.append('operation', op);
     data.append('id', parseInt(id));
+    data.append('type', 'upvote');
     data.append('downstate', downstate);
 
     // Send request
