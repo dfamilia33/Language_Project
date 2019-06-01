@@ -167,7 +167,7 @@ def vote():
 
 	op = request.form.get('operation')
 	idnum = request.form.get('id')
-	state = request.form.get('downstate')
+	state = request.form.get('state')
 	typ = request.form.get('type')
 	val1 = 0
 

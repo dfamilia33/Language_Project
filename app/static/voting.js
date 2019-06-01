@@ -9,7 +9,7 @@ function upvote(upbutton){
     var dec_up = false;
 
 	if (upbutton.dataset.state == "down"){
-		op ='+'
+		op ='+';
 
 		upbutton.style.color = "#337ab7";
 		upbutton.dataset.state = "up";
@@ -28,7 +28,7 @@ function upvote(upbutton){
 
 	}
 	else{
-		op = '-'
+		op = '-';
 		upbutton.style.color = "#333";
 		upbutton.dataset.state = "down";
 		localStorage.setItem(`up_${id}`, "down");
@@ -58,7 +58,7 @@ function upvote(upbutton){
     data.append('operation', op);
     data.append('id', parseInt(id));
     data.append('type', 'upvote');
-    data.append('downstate', downstate);
+    data.append('state', downstate);
 
     // Send request
     request.send(data);
@@ -69,16 +69,25 @@ function downvote(downbutton){
 
 	var id = downbutton.dataset.postid;
 
+	const request = new XMLHttpRequest();
+    var op;
+ 	var upstate;
+    request.open('POST', '/voting');
+    var dec_up = false;
+
 
 
 	if (downbutton.dataset.state == "down"){
+		op ='+';
 		downbutton.style.color = "#337ab7";
 		downbutton.dataset.state = "up";
 		localStorage.setItem(`down_${id}`, "up");
 
 		var upbutton = document.querySelector(`#up_${id}`);
+		upstate = upbutton.dataset.state;
 
 		if(upbutton.dataset.state == "up"){
+			dec_up = true;
 
 			upbutton.style.color = "#333";
 			upbutton.dataset.state = "down";
@@ -86,10 +95,41 @@ function downvote(downbutton){
 		}
 	}
 	else{
+		op = '-';
 		downbutton.style.color = "#333";
 		downbutton.dataset.state = "down";
 		localStorage.setItem(`down_${id}`, "down");
 	}
+
+    request.onload = () => {
+
+        // Extract JSON data from request
+        const data = JSON.parse(request.responseText);
+
+        // Update the result div
+        if (data.success) {
+    		//alert(data.value);
+            document.querySelector(`#downtext_${id}`).innerHTML = `${data.downvalue}`;
+
+            if (dec_up) {
+            	
+            	document.querySelector(`#uptext_${id}`).innerHTML = `${data.upvalue}`;
+            }
+
+
+        }
+    }
+ 
+
+	// Add data to send with request
+    const data = new FormData();
+    data.append('operation', op);
+    data.append('id', parseInt(id));
+    data.append('type', 'downvote');
+    data.append('state', upstate);
+
+    // Send request
+    request.send(data);	
 
 
 	
