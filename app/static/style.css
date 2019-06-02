@@ -41,3 +41,8 @@ body {
   opacity: 0.75;
   cursor: pointer;
 }
+
+nav {
+	text-align: right;
+	margin-right: 50px;
+}
