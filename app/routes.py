@@ -54,7 +54,7 @@ def alpha(num):
 	flags = list()
 
 
-	return render_template("alpha.html", sentence = "JeviDict", postlist = alphalist,
+	return render_template("alpha.html", sentence = "JeviDict", postlist = alphalist, link = "/alpha/" + str(num),
 	 flaglist = flags, indlist = page_ind(num, len(alphalist)))
 
 
