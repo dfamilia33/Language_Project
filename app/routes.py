@@ -54,8 +54,9 @@ def alpha(num):
 	flags = list()
 
 
-	return render_template("alpha.html", sentence = "JeviDict", postlist = alphalist,
-	 flaglist = flags, indlist = page_ind(num, len(alphalist)))
+	return render_template("alpha.html", sentence = "JeviDict", postlist = alphalist, link = "/alpha/",
+	 flaglist = flags, indlist = page_ind(num, len(alphalist)),
+	 page = num, page_len = int(math.ceil(Post.query.count()/25.0)))
 
 
 @app.route('/ranked/<int:num>')
@@ -97,8 +98,9 @@ def ranked(num):
 
 	
 
-	return render_template("content.html", sentence = "JeviDict", link = "/ranked/" + str(num), para = "Here all dictionary entries will be sorted by rank",
-	 postlist = ranklist, flaglist = flags, indlist = page_ind(num, len(ranklist))) #not going to work past 1 since ranklst is only 25 long
+	return render_template("content.html", sentence = "JeviDict", link = "/ranked/", para = "Here all dictionary entries will be sorted by rank",
+	 postlist = ranklist, flaglist = flags, indlist = page_ind(num, len(ranklist)),
+	 page = num, page_len = int(math.ceil(Post.query.count()/25.0))) #not going to work past 1 since ranklst is only 25 long
 
 
 @app.route('/time/<int:num>')
@@ -136,12 +138,20 @@ def time(num):
 	flags = list()
 
 
-	return render_template("content.html", sentence = "JeviDict", link = "/time/" + str(num), para = "Here all dictionary entries will be sorted by time posted",
-	 postlist = timelist, flaglist = flags, indlist = page_ind(num, len(timelist)))
+	return render_template("content.html", sentence = "JeviDict", link = "/time/", para = "Here all dictionary entries will be sorted by time posted",
+	 postlist = timelist, flaglist = flags, indlist = page_ind(num, len(timelist)),
+	 page = num, page_len = int(math.ceil(Post.query.count()/25.0)))
 
 @app.route('/by_Country/<abrev_in>/<int:num>')
 def country(abrev_in,num):
-	cnt_list = Country.query.filter_by(abrev = abrev_in)
+	cnt_list = list()
+	
+	if num >1:
+		cnt_list = Country.query.filter_by(abrev = abrev_in).offset((num * 25)-25).limit(num*25).all()
+	else:
+		cnt_list = Country.query.filter_by(abrev = abrev_in).limit(25).all()
+	
+
 	cnt_count = Country.query.filter_by(abrev = abrev_in).count()	
 	
 	page_len = int(math.ceil(cnt_count/25.0))
