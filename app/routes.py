@@ -97,7 +97,7 @@ def ranked(num):
 
 	
 
-	return render_template("ranked.html", sentence = "JeviDict",
+	return render_template("content.html", sentence = "JeviDict", link = "/ranked/" + str(num), para = "Here all dictionary entries will be sorted by rank",
 	 postlist = ranklist, flaglist = flags, indlist = page_ind(num, len(ranklist))) #not going to work past 1 since ranklst is only 25 long
 
 
@@ -136,7 +136,7 @@ def time(num):
 	flags = list()
 
 
-	return render_template("newest.html", sentence = "JeviDict",
+	return render_template("content.html", sentence = "JeviDict", link = "/time/" + str(num), para = "Here all dictionary entries will be sorted by time posted",
 	 postlist = timelist, flaglist = flags, indlist = page_ind(num, len(timelist)))
 
 @app.route('/by_Country/<abrev_in>/<int:num>')
