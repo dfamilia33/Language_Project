@@ -6,11 +6,14 @@
 
 	{% for post in postlist %}
 		<div class = "post-border post-back" data-post_id = {{post.id}}>
-			<h3>{{post.word}}</h3>
+			<h3>{{post.word}}
+
+				{% for ctry in post.countries %}	
+					<span class="flag-icon flag-icon-{{ctry.abrev.lower()}}"></span>
+				{% endfor %}
+
+			</h3>
 			
-			{% for ctry in flaglist[post.id - 1] %}
-				<span class="flag-icon flag-icon-{{ctry.lower()}}"></span>
-			{% endfor %}
 			
 			<p>{{post.definition}}</p>
 			<p>{{post.timestamp}}</p>
