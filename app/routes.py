@@ -94,7 +94,8 @@ def ranked(num):
 
 	flags = list()
 
-
+	for i in ranklist:
+		flags.append(i.countries)
 
 	
 
@@ -137,6 +138,9 @@ def time(num):
 	
 	flags = list()
 
+	for i in timelist:
+		flags.append(i.countries)
+
 
 	return render_template("content.html", sentence = "JeviDict", link = "/time/", para = "Here all dictionary entries will be sorted by time posted",
 	 postlist = timelist, flaglist = flags, indlist = page_ind(num, len(timelist)),
@@ -157,12 +161,19 @@ def country(abrev_in,num):
 	page_len = int(math.ceil(cnt_count/25.0))
 	
 	postlist = list()
+	flags = list()
+
 
 	for i in cnt_list:
 		postlist.append(Post.query.get(i.user_id))
+		flags.append(Post.query.get(i.user_id).countries)
+
 
 	name_of_country = cnt_list[0].name
-	flags = list()
+	
+	
+
+
 
 	return render_template("country.html", name_of_country = name_of_country,
 	 abrev = abrev_in, page = num, page_len = page_len, sentence = "JeviDict",
