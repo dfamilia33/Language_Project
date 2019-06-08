@@ -4,13 +4,18 @@
 
 	<p id = "statement" >Here all dictionary entries will be sorted alphabetically</p>
 
-	<div class="flex-container">
-		{% for post in postlist %}
-			<div>
-				<h3>{{post.word}}</h3>
-			</div>
-		{% endfor %}
-	</div>
+	{% for post in postlist %}
+		<div class = "post-border post-back">
+			<h3>{{post.word}}</h3>
+			
+			{% for ctry in flaglist[post.id - 1] %}
+				<span class="flag-icon flag-icon-{{ctry.lower()}}"></span>
+			{% endfor %}
+			
+			<p>{{post.definition}}</p>
+			<div>Upvotes:{{post.upvotes}} Downvotes:{{post.downvotes}}</div>
+		</div>
+	{% endfor %}
 
 	<nav aria-label="Page navigation example">
 	  <ul class="pagination" data-curr={{page}} data-pagelen = {{page_len}}>

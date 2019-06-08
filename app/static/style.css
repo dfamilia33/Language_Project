@@ -20,8 +20,54 @@ body {
 	background: #FAF5FE;
 }
 
-#statement{
+.flex-container {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.flex-container > div {
+  	background-color: white;
+  	margin: 50px;
+  	padding: 40px;
+ 	font-size: 30px;
+	border-style: solid;
+	border-color: grey;
+	border-radius: 25px;
+}
+
+
+ @media (max-width: 750px) {
+ 	#statement{
+		
+		text-align: center;
+	}
+
+}
+@media (min-width: 751px) {
+	#statement{
+		margin-left: 150px;
+	}
+}
+
+@media (min-width: 1000px) {
+	#searchbar{
+		margin-left: 50px;
+	}
+
+	.post-border{
+
 	margin-left: 150px;
+	margin-right: 200px;
+
+	}
+	.flex-container > div {
+		padding-left: 100px;
+		padding-right: 100px;
+
+	}
+}
+
+#statement{
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
@@ -37,8 +83,6 @@ body {
 	border-style: solid;
 	border-color: grey;
 	margin-bottom: 20px;
-	margin-left: 150px;
-	margin-right: 200px;
 	min-width: 500px;
 	border-radius: 25px;
 
@@ -58,8 +102,8 @@ body {
 }
 
 .glyphicon:hover {
-  opacity: 0.75;
-  cursor: pointer;
+	opacity: 0.75;
+ 	cursor: pointer;
 }
 
 nav {

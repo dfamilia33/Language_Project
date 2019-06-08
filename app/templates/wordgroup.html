@@ -2,8 +2,9 @@
 
 {% block content %}
 
-	<p id = "statement" >{{para}}</p>
 
+	<p id = "statement" >{{para}}</p>
+	
 	{% for post in postlist %}
 		<div class = "post-border post-back" data-post_id = {{post.id}}>
 			<div class="row">
@@ -46,33 +47,6 @@
 
 		</div>
 	{% endfor %}
-
-	<nav aria-label="Page navigation example">
-	  <ul class="pagination" data-curr={{page}} data-pagelen = {{page_len}}>
-	    
-	    <li class="page-item">
-	      <a class="page-link" href="{{link}}{{page-1}}" aria-label="Previous" id = "page_prev">
-	        <span aria-hidden="true">&laquo;</span>
-	        <span class="sr-only">Previous</span>
-	      </a>
-	    </li>
-	    
-
-	    {% for i in indlist %}
-		    <li class="page-item"><a class="page-link" href = "{{link}}{{i}}"> {{i}}</a></li>
-		{% endfor %}
-		
-		
-		<li class="page-item">    	
-	      <a class="page-link" href="{{link}}{{page+1}}" aria-label="Next" id = "page_next">
-	        <span aria-hidden="true">&raquo;</span>
-	        <span class="sr-only">Next</span>
-	      </a>
-	    </li>
-	   
-	  </ul>
-	</nav>
-
 
 
 {% endblock %}
