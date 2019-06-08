@@ -214,3 +214,19 @@ def vote():
 	val1 = Post.query.get(idnum).upvotes
 	val2 = Post.query.get(idnum).downvotes
 	return jsonify({"success": True, "upvalue":val1, "downvalue" : val2})
+
+@app.route('/wordresult/<term>')
+def wordresult(term):    
+
+	resultlist = Post.query.filter(Post.word.like("%" + term + "%")).order_by(Post.upvotes.desc()).all()
+
+
+	flags = list()
+
+	for i in resultlist:
+		flags.append(i.countries)
+
+	
+
+	return render_template("wordgroup.html", sentence = "JeviDict", para = "Results for " + term,
+	 postlist = resultlist, flaglist = flags) #not going to work past 1 since ranklst is only 25 long
