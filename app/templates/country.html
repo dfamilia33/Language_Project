@@ -2,30 +2,47 @@
 
 {% block content %}
 
-	<p data-cntry = "true" data-abrev = '{{abrev.lower()}}' data-full_cntry ='{{name_of_country}}' >Words from {{name_of_country}}</p>
+	<p id = "statement" data-cntry = "true" data-abrev = '{{abrev.lower()}}' data-full_cntry ='{{name_of_country}}' >Words from {{name_of_country}}</p>
 
 	{% for post in postlist %}
 		<div class = "post-border post-back" data-post_id = {{post.id}}>
-			<h3>{{post.word}}
-			
-				{% for ctry in post.countries %}	
-					<span class="flag-icon flag-icon-{{ctry.abrev.lower()}}"></span>
-				{% endfor %}
+			<div class="row">
+				<div class = "col-md-12">
+					<h3>{{post.word}}
+					
+						{% for ctry in post.countries %}	
+							<span class="flag-icon flag-icon-{{ctry.abrev.lower()}}"></span>
+						{% endfor %}
 
-			</h3>
+					</h3>
+				</div>
+			</div>
 
-			<p>{{post.definition}}</p>
-			<p>{{post.timestamp}}</p>
+			<div class="row">
+				<div class = "col-md-12">
+					<p>{{post.definition}}</p>
+				</div>
+			</div>
 			
-				<div>
+			
+			<div class="row">
+				<div class = "col-lg-1 col-md-2 col-sm-2 col-xs-2">
+				
 					<span class="glyphicon glyphicon-chevron-up" id = "up_{{post.id}}" data-postid = {{post.id}} data-state = "down" onclick="upvote(this)"> </span><span id = "uptext_{{post.id}}"> {{post.upvotes}}</span>
 
-				</div>
-			
-				<div>
+					<br>
+		
 					<span class="glyphicon glyphicon-chevron-down" id = "down_{{post.id}}" data-postid = {{post.id}} data-state = "down" onclick="downvote(this)"></span><span id = "downtext_{{post.id}}"> {{post.downvotes}}</span>
+					
 				</div>
-			
+
+				<div class = "col-md-6 col-xs-6" id = "timespan">
+						Posted: {{post.timestamp[5:10]}}-{{post.timestamp[:4]}}
+				</div>
+				
+				
+			</div>
+
 
 		</div>
 	{% endfor %}
@@ -55,6 +72,8 @@
 	   
 	  </ul>
 	</nav>
+
+
 
 
 

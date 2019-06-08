@@ -20,11 +20,31 @@ body {
 	background: #FAF5FE;
 }
 
+#statement{
+	margin-left: 150px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#timespan{
+	margin-left: 15px;
+	color: slategray;
+	font-size: 18px;
+}
+
 .post-border{
 	border-width: 2px;
 	border-style: solid;
 	border-color: grey;
-	margin: 20px;
+	margin-bottom: 20px;
+	margin-left: 150px;
+	margin-right: 200px;
+	min-width: 500px;
+	border-radius: 25px;
+
+}
+.post-border > * {
+	margin-left: 20px;
 
 }
 .post-back{
