@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form id = "sugbox">
+  <div class="form-group">
+    <label for="exampleFormControlInput1">word</label>
+    <input type="email" class="form-control" id="wordsug">
+  </div>
+  <div class="row">
+	  <div class="form-group col-lg-6">
+	    <label for="exampleFormControlSelect2">Origin Countries (Ctrl + C to select multiple) </label>
+	    <select multiple class="form-control" id="contrysug">
+	      <option>Argentina</option>
+	      <option>Bolivia</option>
+	      <option>Brazil</option>
+	      <option>Chile</option>
+	      <option>Colombia</option>
+	      <option>Costa Rica</option>
+	      <option>Cuba</option>
+	      <option>Dominican Republic</option>
+	      <option>Ecuador</option>
+	      <option>El Salvador</option>
+	      <option>Guatemala</option>
+	      <option>Honduras</option>
+	      <option>Mexico</option>
+	      <option>Nicaragua</option>
+	      <option>Panama</option>
+	      <option>Paraguay</option>
+	      <option>Peru</option>
+	      <option>Puerto Rico</option>
+	      <option>Spain</option>
+	      <option>Uruguay</option>
+	      <option>Venezuela</option>
+	    </select>
+	  </div>
+	  <div class="form-group col-lg-6">
+	    <label for="exampleFormControlTextarea1">Definition</label>
+	    <textarea class="form-control" id="defsug" rows="3"></textarea>
+
+	    <label for="exampleFormControlTextarea2" id="sensug" >Example Sentence</label>
+	    <textarea class="form-control" rows="3"></textarea>
+	  </div>
+  </div>
+  <button class="btn btn-primary" type="submit">Submit form</button>
+</form>
+
+
+
+{% endblock %}

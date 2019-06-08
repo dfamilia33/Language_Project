@@ -41,11 +41,22 @@ body {
 		
 		text-align: center;
 	}
+	#sugbox{
+		margin: 50px;
+	}
 
 }
 @media (min-width: 751px) {
 	#statement{
 		margin-left: 150px;
+	}
+	#sugbox{
+		margin-left: 200px;
+		margin-right: 200px;
+		margin-top: 50px;
+	}
+	#submitlink{
+		margin-left: 50px;
 	}
 }
 
@@ -66,6 +77,19 @@ body {
 
 	}
 }
+#wordsug {
+	width: 300px;
+}
+#sensug{
+	margin-top: 50px;
+}
+#contrysug {
+
+	width: 400px;
+	height: 300px;
+
+}
+
 
 #statement{
 	margin-top: 20px;

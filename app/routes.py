@@ -257,3 +257,8 @@ def searchresult():
 
 	return render_template("wordgroup.html", sentence = "JeviDict", para = para,
 	 postlist = resultlist, flaglist = flags) #not going to work past 1 since ranklst is only 25 long
+
+@app.route('/suggestion')
+def suggestion():
+	
+	return render_template("suggestion.html", sentence = "JeviDict" )    
