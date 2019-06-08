@@ -228,5 +228,32 @@ def wordresult(term):
 
 	
 
-	return render_template("wordgroup.html", sentence = "JeviDict", para = "Results for " + term,
+	return render_template("wordgroup.html", sentence = "JeviDict", para = "Results for \'" + term + "\'",
+	 postlist = resultlist, flaglist = flags) #not going to work past 1 since ranklst is only 25 long
+
+
+@app.route('/searchresult',methods = ["POST"])
+def searchresult():
+
+	term = request.form['searchword']
+
+	resultlist = Post.query.filter(Post.word.like("%" + term + "%")).order_by(Post.upvotes.desc()).all()
+
+	para = ""
+
+	if not resultlist:
+		para = "No results found for \'" + term + "\'"
+	else:
+		para = "Results for \'" + term + "\'"
+
+	
+
+	flags = list()
+
+	for i in resultlist:
+		flags.append(i.countries)
+
+	
+
+	return render_template("wordgroup.html", sentence = "JeviDict", para = para,
 	 postlist = resultlist, flaglist = flags) #not going to work past 1 since ranklst is only 25 long
