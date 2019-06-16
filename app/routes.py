@@ -237,7 +237,7 @@ def searchresult():
 
 	term = request.form['searchword']
 
-	resultlist = Post.query.filter(Post.word.like("%" + term + "%")).order_by(Post.upvotes.desc()).all()
+	resultlist = Post.query.filter(Post.word.like(term + "%")).order_by(Post.upvotes.desc()).all()
 
 	para = ""
 
