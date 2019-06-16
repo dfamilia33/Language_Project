@@ -35,6 +35,9 @@ body {
 	border-radius: 25px;
 }
 
+.exsentence {
+	font-style: italic;
+}
 
  @media (max-width: 750px) {
  	#statement{
