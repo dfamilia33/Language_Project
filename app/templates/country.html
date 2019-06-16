@@ -2,78 +2,83 @@
 
 {% block content %}
 
-	<p id = "statement" data-cntry = "true" data-abrev = '{{abrev.lower()}}' data-full_cntry ='{{name_of_country}}' >Words from {{name_of_country}}</p>
+	{% if zero_results %}
+		<p id = "statement" data-cntry = "true" data-abrev = '{{abrev.lower()}}' data-full_cntry ='{{name_of_country}}' >No Results found from {{name_of_country}}</p>
+	
+	{% else %}
 
-	{% for post in postlist %}
-		<div class = "post-border post-back" data-post_id = {{post.id}}>
-			<div class="row">
-				<div class = "col-md-12">
-					<h3>{{post.word}}
+		<p id = "statement" data-cntry = "true" data-abrev = '{{abrev.lower()}}' data-full_cntry ='{{name_of_country}}' >Words from {{name_of_country}}</p>
+
+		{% for post in postlist %}
+			<div class = "post-border post-back" data-post_id = {{post.id}}>
+				<div class="row">
+					<div class = "col-md-12">
+						<h3>{{post.word}}
+						
+							{% for ctry in post.countries %}	
+								<span class="flag-icon flag-icon-{{ctry.abrev.lower()}}"></span>
+							{% endfor %}
+
+						</h3>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class = "col-md-12">
+						<p>{{post.definition}}</p>
+					</div>
+				</div>
+				
+				
+				<div class="row">
+					<div class = "col-lg-1 col-md-2 col-sm-2 col-xs-2">
 					
-						{% for ctry in post.countries %}	
-							<span class="flag-icon flag-icon-{{ctry.abrev.lower()}}"></span>
-						{% endfor %}
+						<span class="glyphicon glyphicon-chevron-up" id = "up_{{post.id}}" data-postid = {{post.id}} data-state = "down" onclick="upvote(this)"> </span><span id = "uptext_{{post.id}}"> {{post.upvotes}}</span>
 
-					</h3>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class = "col-md-12">
-					<p>{{post.definition}}</p>
-				</div>
-			</div>
+						<br>
 			
-			
-			<div class="row">
-				<div class = "col-lg-1 col-md-2 col-sm-2 col-xs-2">
-				
-					<span class="glyphicon glyphicon-chevron-up" id = "up_{{post.id}}" data-postid = {{post.id}} data-state = "down" onclick="upvote(this)"> </span><span id = "uptext_{{post.id}}"> {{post.upvotes}}</span>
+						<span class="glyphicon glyphicon-chevron-down" id = "down_{{post.id}}" data-postid = {{post.id}} data-state = "down" onclick="downvote(this)"></span><span id = "downtext_{{post.id}}"> {{post.downvotes}}</span>
+						
+					</div>
 
-					<br>
-		
-					<span class="glyphicon glyphicon-chevron-down" id = "down_{{post.id}}" data-postid = {{post.id}} data-state = "down" onclick="downvote(this)"></span><span id = "downtext_{{post.id}}"> {{post.downvotes}}</span>
+					<div class = "col-md-6 col-xs-6" id = "timespan">
+							Posted: {{post.timestamp[5:10]}}-{{post.timestamp[:4]}}
+					</div>
+					
 					
 				</div>
 
-				<div class = "col-md-6 col-xs-6" id = "timespan">
-						Posted: {{post.timestamp[5:10]}}-{{post.timestamp[:4]}}
-				</div>
-				
-				
+
 			</div>
-
-
-		</div>
-	{% endfor %}
-
-	<nav aria-label="Page navigation example">
-	  <ul class="pagination" data-curr={{page}} data-pagelen = {{page_len}}>
-	    
-	    <li class="page-item">
-	      <a class="page-link" href="/by_Country/{{abrev}}/{{page-1}}" aria-label="Previous" id = "page_prev">
-	        <span aria-hidden="true">&laquo;</span>
-	        <span class="sr-only">Previous</span>
-	      </a>
-	    </li>
-	    
-
-	    {% for i in indlist %}
-		    <li class="page-item"><a class="page-link" href = "/by_Country/{{abrev}}/{{i}}"> {{i}}</a></li>
 		{% endfor %}
-		
-		
-		<li class="page-item">    	
-	      <a class="page-link" href="/by_Country/{{abrev}}/{{page+1}}" aria-label="Next" id = "page_next">
-	        <span aria-hidden="true">&raquo;</span>
-	        <span class="sr-only">Next</span>
-	      </a>
-	    </li>
-	   
-	  </ul>
-	</nav>
 
+		<nav aria-label="Page navigation example">
+		  <ul class="pagination" data-curr={{page}} data-pagelen = {{page_len}}>
+		    
+		    <li class="page-item">
+		      <a class="page-link" href="/by_Country/{{abrev}}/{{page-1}}" aria-label="Previous" id = "page_prev">
+		        <span aria-hidden="true">&laquo;</span>
+		        <span class="sr-only">Previous</span>
+		      </a>
+		    </li>
+		    
 
+		    {% for i in indlist %}
+			    <li class="page-item"><a class="page-link" href = "/by_Country/{{abrev}}/{{i}}"> {{i}}</a></li>
+			{% endfor %}
+			
+			
+			<li class="page-item">    	
+		      <a class="page-link" href="/by_Country/{{abrev}}/{{page+1}}" aria-label="Next" id = "page_next">
+		        <span aria-hidden="true">&raquo;</span>
+		        <span class="sr-only">Next</span>
+		      </a>
+		    </li>
+		   
+		  </ul>
+		</nav>
+
+	{% endif %}
 
 
 

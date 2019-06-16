@@ -10,6 +10,27 @@ from app.models import Post, Country
 from app.listhelper import page_ind
 import math
 
+abrevdict =	{"AR" : "Argentina",
+	"BO" : "Bolivia",
+	"BR" : "Brazil",
+	"CL" : "Chile",
+	"CO" : "Colombia",
+	"CR" : "Costa Rica",
+	"CU" : "Cuba",
+	"DO" : "Dominican Republic",
+	"EC" : "Ecuador",
+	"SV" : "El Salvador",
+	"GT" : "Guatemala",
+	"HN" : "Honduras",
+	"MX" : "Mexico",
+	"NI" : "Nicaragua",
+	"PA" : "Panama",
+	"PY" : "Paraguay",
+	"PE" : "Peru",
+	"PR" : "Puerto Rico",
+	"ES" : "Spain",
+	"UY" : "Uruguay",
+	"VE" : "Venezuela"}		  
 
 
 @app.route('/')
@@ -149,6 +170,8 @@ def time(num):
 @app.route('/by_Country/<abrev_in>/<int:num>')
 def country(abrev_in,num):
 	cnt_list = list()
+
+	zero_results = False
 	
 	if num >1:
 		cnt_list = Country.query.filter_by(abrev = abrev_in).offset((num * 25)-25).limit(num*25).all()
@@ -169,13 +192,16 @@ def country(abrev_in,num):
 		flags.append(Post.query.get(i.user_id).countries)
 
 
-	name_of_country = cnt_list[0].name
+	name_of_country = abrevdict[abrev_in]
+
+	if len(cnt_list) == 0:
+		zero_results = True
 	
 	
 
 
 
-	return render_template("country.html", name_of_country = name_of_country,
+	return render_template("country.html", name_of_country = name_of_country, zero_results = zero_results,
 	 abrev = abrev_in, page = num, page_len = page_len, sentence = "JeviDict",
 	 postlist = postlist, flaglist = flags, indlist = page_ind(num, cnt_count))
 
@@ -237,7 +263,7 @@ def searchresult():
 
 	term = request.form['searchword']
 
-	resultlist = Post.query.filter(Post.word.like(term + "%")).order_by(Post.upvotes.desc()).all()
+	resultlist = Post.query.filter(Post.word.like( term + "%")).order_by(Post.upvotes.desc()).all()
 
 	para = ""
 
