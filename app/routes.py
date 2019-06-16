@@ -9,6 +9,7 @@ from flask import render_template, request, jsonify
 from app.models import Post, Country
 from app.listhelper import page_ind
 import math
+from sqlalchemy import and_
 
 abrevdict =	{"AR" : "Argentina",
 	"BO" : "Bolivia",
@@ -42,7 +43,7 @@ def alpha(num):
 
 
 	if num > 1:
-		alphalist = Post.query.order_by(Post.word).offset((num * 25)-25).limit(num*25).all()
+		alphalist = Post.query.filter_by(approved=True).order_by(Post.word).offset((num * 25)-25).limit(num*25).all()
 		# FLask SQL-Alchemy creates a relationship between a databse and a python program
 		# to query, update, delete and create from a table within the python language
 
@@ -57,7 +58,7 @@ def alpha(num):
 
 		"""
 	else:
-		alphalist = Post.query.order_by(Post.word).limit(25).all()
+		alphalist = Post.query.filter_by(approved=True).order_by(Post.word).limit(25).all()
 
 		"""
 			SQL Equivalent
@@ -77,14 +78,14 @@ def alpha(num):
 
 	return render_template("alpha.html", sentence = "JeviDict", postlist = alphalist, link = "/alpha/",
 	 flaglist = flags, indlist = page_ind(num, len(alphalist)),
-	 page = num, page_len = int(math.ceil(Post.query.count()/25.0)))
+	 page = num, page_len = int(math.ceil(Post.query.filter_by(approved=True).count()/25.0)))
 
 
 @app.route('/ranked/<int:num>')
 def ranked(num):    
 
 	if num > 1:
-		ranklist = Post.query.order_by(Post.upvotes.desc()).offset((num * 25)-25).limit(num*25).all()
+		ranklist = Post.query.filter_by(approved=True).order_by(Post.upvotes.desc()).offset((num * 25)-25).limit(num*25).all()
 
 		"""
 			SQL Equivalent:
@@ -97,7 +98,7 @@ def ranked(num):
 
 		"""
 	else:
-		ranklist = Post.query.order_by(Post.upvotes.desc()).limit(25).all()
+		ranklist = Post.query.filter_by(approved=True).order_by(Post.upvotes.desc()).limit(25).all()
 
 		"""
 			SQL Equivalent:
@@ -122,14 +123,14 @@ def ranked(num):
 
 	return render_template("content.html", sentence = "JeviDict", link = "/ranked/", para = "Here all dictionary entries will be sorted by rank",
 	 postlist = ranklist, flaglist = flags, indlist = page_ind(num, len(ranklist)),
-	 page = num, page_len = int(math.ceil(Post.query.count()/25.0))) #not going to work past 1 since ranklst is only 25 long
+	 page = num, page_len = int(math.ceil(Post.query.filter_by(approved=True).count()/25.0))) #not going to work past 1 since ranklst is only 25 long
 
 
 @app.route('/time/<int:num>')
 def time(num):
 	
 	if num > 1:
-		timelist = Post.query.order_by(Post.timestamp.desc()).offset((num * 25)-25).limit(num*25).all()
+		timelist = Post.query.filter_by(approved=True).order_by(Post.timestamp.desc()).offset((num * 25)-25).limit(num*25).all()
 
 		"""
 			SQL Equivalent:
@@ -142,7 +143,7 @@ def time(num):
 
 		"""
 	else:
-		timelist = Post.query.order_by(Post.timestamp.desc()).limit(25).all()
+		timelist = Post.query.filter_by(approved=True).order_by(Post.timestamp.desc()).limit(25).all()
 
 		"""
 			SQL Equivalent:
@@ -165,7 +166,7 @@ def time(num):
 
 	return render_template("content.html", sentence = "JeviDict", link = "/time/", para = "Here all dictionary entries will be sorted by time posted",
 	 postlist = timelist, flaglist = flags, indlist = page_ind(num, len(timelist)),
-	 page = num, page_len = int(math.ceil(Post.query.count()/25.0)))
+	 page = num, page_len = int(math.ceil(Post.query.filter_by(approved=True).count()/25.0)))
 
 @app.route('/by_Country/<abrev_in>/<int:num>')
 def country(abrev_in,num):
@@ -174,12 +175,12 @@ def country(abrev_in,num):
 	zero_results = False
 	
 	if num >1:
-		cnt_list = Country.query.filter_by(abrev = abrev_in).offset((num * 25)-25).limit(num*25).all()
+		cnt_list = Country.query.filter_by(abrev = abrev_in, approved=True).offset((num * 25)-25).limit(num*25).all()
 	else:
-		cnt_list = Country.query.filter_by(abrev = abrev_in).limit(25).all()
+		cnt_list = Country.query.filter_by(abrev = abrev_in, approved=True).limit(25).all()
 	
 
-	cnt_count = Country.query.filter_by(abrev = abrev_in).count()	
+	cnt_count = Country.query.filter_by(abrev = abrev_in, approved=True).count()	
 	
 	page_len = int(math.ceil(cnt_count/25.0))
 	
@@ -263,7 +264,7 @@ def searchresult():
 
 	term = request.form['searchword']
 
-	resultlist = Post.query.filter(Post.word.like( term + "%")).order_by(Post.upvotes.desc()).all()
+	resultlist = Post.query.filter(and_(Post.word.like( term + "%"), Post.approved==True )).order_by(Post.upvotes.desc()).all()
 
 	para = ""
 

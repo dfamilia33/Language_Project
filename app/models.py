@@ -28,3 +28,4 @@ class Country(db.Model):
     name = db.Column(db.String(32))
     abrev = db.Column(db.String(4))
     user_id = db.Column(db.Integer, db.ForeignKey('post.id')) #HAS TO BE LOWERCASE
+    approved = db.Column(db.Boolean)
