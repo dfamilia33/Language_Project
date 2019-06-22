@@ -10,8 +10,10 @@ from app.models import Post, Country
 from app.listhelper import page_ind
 import math
 from sqlalchemy import and_
+import datetime
 
-abrevdict =	{"AR" : "Argentina",
+abrevdict =	{
+	"AR" : "Argentina",
 	"BO" : "Bolivia",
 	"BR" : "Brazil",
 	"CL" : "Chile",
@@ -31,7 +33,29 @@ abrevdict =	{"AR" : "Argentina",
 	"PR" : "Puerto Rico",
 	"ES" : "Spain",
 	"UY" : "Uruguay",
-	"VE" : "Venezuela"}		  
+	"VE" : "Venezuela",
+	"Argentina": "AR",
+	"Bolivia" : "BO",
+	"Brazil" : "BR",
+	"Chile" : "CL",
+	"Colombia" : "CO",
+	"Costa Rica" : "CR",
+	"Cuba" : "CU",
+	"Dominican Republic" : "DO",
+	"Ecuador" : "EC",
+	"El Salvador" : "SV",
+	"Guatemala" : "GT",
+	"Honduras" : "HN",
+	"Mexico" : "MX",
+	"Nicaragua" : "NI",
+	"Panama" : "PA",
+	"Paraguay" : "PY",
+	"Peru" : "PE",
+	"Puerto Rico" : "PR",
+	"Spain" : "ES",
+	"Uruguay" : "UY",
+	"Venezuela" : "VE"
+	}		  
 
 
 @app.route('/')
@@ -289,3 +313,29 @@ def searchresult():
 def suggestion():
 	
 	return render_template("suggestion.html", sentence = "JeviDict" )    
+
+@app.route('/suggestpost', methods = ["POST"])
+def suggestpost():
+	try:
+		word = request.form.get('word')
+		definition = request.form.get('definition')
+		sentence = request.form.get('sentence')
+
+		countries = request.form.get('countries').split(",")
+
+
+
+		mypost = Post(word=word,definition=definition,upvotes=0,downvotes=0,timestamp=datetime.datetime.now(),approved =False,sentence=sentence)
+		db.session.add(mypost)
+
+		for i in countries:
+			mycount = Country(name= i ,abrev=abrevdict[i],Post=mypost,approved = False)
+			db.session.add(mycount)
+
+		db.session.commit()
+
+		return jsonify({"success": True})
+	except:
+		return jsonify({"success": False})
+
+

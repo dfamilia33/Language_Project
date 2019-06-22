@@ -10,3 +10,20 @@ flask run
 flask db current
 flask db heads
 flask db stamp heads
+
+Migration dilemna instructions:
+
+SQLlite does not support altering columns from what I'm aware.
+Only operations that work are add and drop. A while ago I changed the countries column
+and this has caused problems for me while migrating.
+
+This message would appear "No support for ALTER of constraints in SQLite dialect"
+
+Instructions to avoid this: 
+- flask db migrate 
+- go the migration script associated with this
+- change the commands where alembic tries to do unsupported operations in sqllite
+- only include the changes you need
+- flask db upgrade
+- sqlite3 app/app.db
+	- sqlite> .schema  (This checks if schema has been updated)
