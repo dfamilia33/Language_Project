@@ -28,6 +28,10 @@ etc..). That class inherits from a databse model so it can easily store itself i
 through a linux ubuntu command line until deployment
 
 ## Launch
+
+Update (06/26/2019): This project has migrated from a development sqlite database to a production PostgreSQL database, and is
+no longer available for a locally hosted demo. A link to a cloud hosted service of the app will be posted soon.
+
 The app in development can be launched through a command line. This process should take
 no longer than a few minutes. Start by navigting to the folder in your command line
 prompt then enter the linux commands below:
