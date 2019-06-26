@@ -3,6 +3,7 @@
 h1 {
 	color: white;
 	font-size: 72px;
+
 }
 
 h3 {
@@ -136,4 +137,20 @@ body {
 .navpagination {
 	text-align: right;
 	margin-right: 50px;
+}
+
+#navbutton1 {
+    color: 	#D3D3D3;
+}
+
+#navbutton2 {
+    color: #D3D3D3;
+}
+
+#navbutton3 {
+    color: #D3D3D3;
+}
+
+#navbutton4 {
+    color: #D3D3D3;
 }

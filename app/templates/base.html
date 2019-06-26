@@ -20,7 +20,8 @@
 
 
 {% block navbar %}
-	<nav class="navbar navbar-expand-lg navbar-light">
+	
+	<!--<nav class="navbar navbar-expand-lg navbar-light">
 		<h1>{{sentence}}</h1>
 		
 		<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
@@ -29,7 +30,7 @@
 			<a href="/ranked/1" class="btn btn-primary btn-md active" role="button" aria-pressed="true">Sorted by popularity</a>
 			<a href="/time/1" class="btn btn-primary btn-md active" role="button" aria-pressed="true">Sorted by time</a>
 
-		
+			
 			<div class="btn-group" role="group">
 				<div class="dropdown">
 				  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -58,7 +59,7 @@
 				    <li><a class="dropdown-item" href="/by_Country/PR/1"><span class="flag-icon flag-icon-pr"></span> Puerto Rico</a></li>
 				    <li><a class="dropdown-item" href="/by_Country/ES/1"><span class="flag-icon flag-icon-es"></span> Spain</a></li>
 				    <li><a class="dropdown-item" href="/by_Country/UY/1"><span class="flag-icon flag-icon-uy"></span> Uruguay</a></li>
-				    <li><a class="dropdown-item" href="/by_Country/VE/1"><span class="flag-icon flag-icon-ve"></span> Venezuela</a></li>
+				    <li><a class="dropdown-item" href="/by_Country/VE/1"><span class="flag-icon flag-icon-ve"></span> Venezuela</a></li> 
 		  
 
 				  </ul>
@@ -76,6 +77,68 @@
 		</form>
 
 
+	</nav>-->
+
+	<nav class="navbar navbar-default">
+	<h1>{{sentence}}</h1>
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	        <li><a id="navbutton1" href="/alpha/1">Sorted alphabetically</a></li>
+	        <li><a id="navbutton2" href="/ranked/1">Sorted by popularity</a></li>
+	        <li><a id="navbutton3" href="/time/1">Sorted by time</a></li>
+	        <li class="dropdown">
+	          <a id="navbutton4" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" id = "dropdownMenuButton" aria-haspopup="true" aria-expanded="false">Countries <span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+					<li><a class="dropdown-item" href="/by_Country/AR/1"><span class="flag-icon flag-icon-ar"></span> Argentina</a></li>
+				    <li><a class="dropdown-item" href="/by_Country/BO/1"><span class="flag-icon flag-icon-bo"></span> Bolivia</a></li>
+				    <li><a class="dropdown-item" href="/by_Country/BR/1"><span class="flag-icon flag-icon-br"></span> Brazil</a></li>
+				    <li><a class="dropdown-item" href="/by_Country/CL/1"><span class="flag-icon flag-icon-cl"></span> Chile</a></li>
+				    <li><a class="dropdown-item" href="/by_Country/CO/1"><span class="flag-icon flag-icon-co"></span> Colombia</a></li>
+				    <li><a class="dropdown-item" href="/by_Country/CR/1"><span class="flag-icon flag-icon-cr"></span> Costa Rica</a></li>
+				    <li><a class="dropdown-item" href="/by_Country/CU/1"><span class="flag-icon flag-icon-cu"></span> Cuba</a></li>
+				    <li><a class="dropdown-item" href="/by_Country/DO/1"><span class="flag-icon flag-icon-do"></span> Dominican Republic</a></li>
+				    <li><a class="dropdown-item" href="/by_Country/EC/1"><span class="flag-icon flag-icon-ec"></span> Ecuador</a></li>
+				    <li><a class="dropdown-item" href="/by_Country/SV/1"><span class="flag-icon flag-icon-sv"></span> El Salvador</a></li>
+				    <li><a class="dropdown-item" href="/by_Country/GT/1"><span class="flag-icon flag-icon-gt"></span> Guatemala</a></li>
+				    <li><a class="dropdown-item" href="/by_Country/HN/1"><span class="flag-icon flag-icon-hn"></span> Honduras</a></li>
+				    <li><a class="dropdown-item" href="/by_Country/MX/1"><span class="flag-icon flag-icon-mx"></span> Mexico</a></li>
+				    <li><a class="dropdown-item" href="/by_Country/NI/1"><span class="flag-icon flag-icon-ni"></span> Nicaragua</a></li>
+				    <li><a class="dropdown-item" href="/by_Country/PA/1"><span class="flag-icon flag-icon-pa"></span> Panama</a></li>
+				    <li><a class="dropdown-item" href="/by_Country/PY/1"><span class="flag-icon flag-icon-py"></span> Paraguay</a></li>
+				    <li><a class="dropdown-item" href="/by_Country/PE/1"><span class="flag-icon flag-icon-pe"></span> Peru</a></li>
+				    <li><a class="dropdown-item" href="/by_Country/PR/1"><span class="flag-icon flag-icon-pr"></span> Puerto Rico</a></li>
+				    <li><a class="dropdown-item" href="/by_Country/ES/1"><span class="flag-icon flag-icon-es"></span> Spain</a></li>
+				    <li><a class="dropdown-item" href="/by_Country/UY/1"><span class="flag-icon flag-icon-uy"></span> Uruguay</a></li>
+				    <li><a class="dropdown-item" href="/by_Country/VE/1"><span class="flag-icon flag-icon-ve"></span> Venezuela</a></li>
+	          </ul>
+	        </li>
+	      </ul>
+		  <ul class="nav navbar-nav navbar-right">
+		    <li><a id="navbutton3" href="/suggestion">Submit Word</a></li>
+
+		    <form class="form-inline active-cyan-4 btn-group" id = "searchbar" action = "/searchresult" method = "POST">
+		  		<input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search" aria-label="Search" name = "searchword">
+		  		<i class="fas fa-search" aria-hidden="true"></i>
+			
+			</form>
+
+	        
+	      </ul>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
 	</nav>
 
 
