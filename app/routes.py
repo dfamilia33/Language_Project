@@ -60,7 +60,31 @@ abrevdict =	{
 
 @app.route('/')
 def main():
-	return render_template("base.html", sentence = "JeviDict")
+	ranklist = Post.query.filter_by(approved=True).order_by(Post.upvotes.desc()).limit(25).all()
+
+	"""
+			SQL Equivalent:
+
+			SELECT *
+			FROM POST
+			ORDER BY Upvotes DESC
+			LIMIT 25
+
+	"""
+
+	num = 1
+	
+
+	flags = list()
+
+	for i in ranklist:
+		flags.append(i.countries)
+
+	
+
+	return render_template("content.html", sentence = "JeviDict", link = "/ranked/", para = "Here all dictionary entries will be sorted by rank",
+	 postlist = ranklist, flaglist = flags, indlist = page_ind(num, len(ranklist)),
+	 page = num, page_len = int(math.ceil(Post.query.filter_by(approved=True).count()/25.0)))
 
 @app.route('/alpha/<int:num>')
 def alpha(num):
