@@ -293,7 +293,7 @@ def vote():
 @app.route('/wordresult/<term>')
 def wordresult(term):    
 
-	resultlist = Post.query.filter(Post.word.like("%" + term + "%")).order_by(Post.upvotes.desc()).all()
+	resultlist = Post.query.filter(and_(Post.word.like( term ), Post.approved==True )).order_by(Post.upvotes.desc()).all()
 
 
 	flags = list()
